@@ -1,4 +1,4 @@
-# 🤖 RAG Model — Document Q&A System
+#  RAG Model — Document Q&A System
 
 > **Ask questions about your documents and get accurate, source-labeled answers
 > powered by Retrieval-Augmented Generation.**
