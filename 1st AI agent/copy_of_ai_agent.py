@@ -4,17 +4,17 @@
 Converted from Colab Notebook: AI Agent with LangChain & Groq
 Practical Implementation: Tools, Wikipedia, Tavily Web Search & Function Calling
 
-# 🤖 AI Agents with LangChain & Groq
+#  AI Agents with LangChain & Groq
 ### Practical Implementation: Tools, Wikipedia, Tavily Web Search & Function Calling
 ---
 
-## 💡 What is an AI Agent?
+##  What is an AI Agent?
 
 An **AI Agent** is a Large Language Model (LLM) that can:
-- 🧠 **Think** — reason about what needs to be done
-- 🛠️ **Use Tools** — call functions like search, calculator, APIs
-- 👁️ **Observe** — look at tool results and decide next steps
-- 🔄 **Repeat** — keep going until the task is done
+-  **Think** — reason about what needs to be done
+-  **Use Tools** — call functions like search, calculator, APIs
+-  **Observe** — look at tool results and decide next steps
+-  **Repeat** — keep going until the task is done
 
 ```
 User Question
@@ -35,7 +35,7 @@ User Question
  Final Answer
 ```
 
-## 🧰 Tools in This Script
+##  Tools in This Script
 
 | Tool | Purpose | Source |
 |---|---|---|
@@ -86,7 +86,7 @@ wikipedia.set_user_agent("AIAgentTutorial/1.0 (contact@example.com)")
 
 
 # =====================================================================
-# 📦 Step 0: Dependencies
+#  Step 0: Dependencies
 # =====================================================================
 # To install all required packages, run in your terminal:
 # pip install -r requirements.txt
@@ -94,7 +94,7 @@ wikipedia.set_user_agent("AIAgentTutorial/1.0 (contact@example.com)")
 
 
 # =====================================================================
-# 🛠️ Step 3: Create Custom Tools with @tool Decorator
+#  Step 3: Create Custom Tools with @tool Decorator
 # =====================================================================
 @tool
 def add(a: float, b: float) -> float:
@@ -155,7 +155,7 @@ def wikipedia_search(query: str) -> str:
 
 
 # =====================================================================
-# 📚 Step 4: Configure Tavily Web Search Tool
+#  Step 4: Configure Tavily Web Search Tool
 # =====================================================================
 def get_tavily_tool(tavily_api_key: str = None):
     """Initializes TavilySearchResults tool if key is present."""
@@ -169,12 +169,12 @@ def get_tavily_tool(tavily_api_key: str = None):
             tavily_api_key=tavily_api_key
         )
     except Exception as e:
-        print(f"⚠️  Could not initialize Tavily Search tool: {e}")
+        print(f"  Could not initialize Tavily Search tool: {e}")
         return None
 
 
 # =====================================================================
-# 🧠 Step 2 & 5: Construct Agent with Tool Tracking
+#  Step 2 & 5: Construct Agent with Tool Tracking
 # =====================================================================
 def build_agent(groq_key: str, tavily_key: str = None, model_name: str = "openai/gpt-oss-20b"):
     """Initializes Groq LLM, tools, prompt, and builds AgentExecutor.
@@ -242,7 +242,7 @@ def ask_agent(agent_executor: AgentExecutor, user_input: str):
     try:
         result = agent_executor.invoke({"input": user_input})
     except Exception as err:
-        print(f"\n❌ Execution Error: {err}\n")
+        print(f"\n Execution Error: {err}\n")
         return
 
     print("\n" + "=" * 60)
@@ -252,7 +252,7 @@ def ask_agent(agent_executor: AgentExecutor, user_input: str):
     # Check and print tools used
     intermediate_steps = result.get("intermediate_steps", [])
     if intermediate_steps:
-        print("🛠️  TOOLS USED:")
+        print("  TOOLS USED:")
         for action, _ in intermediate_steps:
             tool_name = getattr(action, "tool", str(action))
             tool_input = getattr(action, "tool_input", "")
@@ -267,21 +267,21 @@ def ask_agent(agent_executor: AgentExecutor, user_input: str):
             else:
                 print(f"  • Tool: [{tool_name}] -> Input: {tool_input}")
     else:
-        print("🛠️  TOOLS USED: None (Direct Answer)")
+        print("  TOOLS USED: None (Direct Answer)")
 
     print("-" * 60)
-    print("📄 OUTPUT:")
+    print(" OUTPUT:")
     print(result.get("output", "No output returned."))
     print("=" * 60 + "\n")
 
 
 # =====================================================================
-# 🧪 Step 6: Testing Agent Capabilities
+#  Step 6: Testing Agent Capabilities
 # =====================================================================
 def run_tests(agent_executor: AgentExecutor, has_tavily: bool = False):
     """Runs test queries to demonstrate tool usage."""
     print("\n" + "=" * 60)
-    print("🧪 Running Agent Demonstration Tests")
+    print(" Running Agent Demonstration Tests")
     print("=" * 60)
 
     print("\n--- Test 1: Wikipedia Search ---")
@@ -302,7 +302,7 @@ def run_tests(agent_executor: AgentExecutor, has_tavily: bool = False):
 
 
 # =====================================================================
-# 💬 Step 7: Interactive Chat Loop & Main Entry Point
+#  Step 7: Interactive Chat Loop & Main Entry Point
 # =====================================================================
 def main():
     # Load from .env file if present
@@ -320,7 +320,7 @@ def main():
                 groq_key = user_input_key
                 os.environ["GROQ_API_KEY"] = groq_key
         else:
-            print("⚠️  Warning: GROQ_API_KEY is not set or is a placeholder in .env / environment.")
+            print("  Warning: GROQ_API_KEY is not set or is a placeholder in .env / environment.")
 
     # Retrieve Tavily API Key
     tavily_key = os.getenv("TAVILY_API_KEY", "").strip()
@@ -331,35 +331,35 @@ def main():
     model_name = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
 
     print("\n--- API Configuration ---")
-    print("Groq API Key:  ", "✅ Ready" if groq_key and not groq_key.startswith("YOUR_") else "❌ Missing / Placeholder")
-    print("Tavily API Key:", "✅ Ready" if tavily_key else "⚠️  Not configured (Web search disabled, Wikipedia & Math active)")
+    print("Groq API Key:  ", " Ready" if groq_key and not groq_key.startswith("YOUR_") else " Missing / Placeholder")
+    print("Tavily API Key:", " Ready" if tavily_key else "  Not configured (Web search disabled, Wikipedia & Math active)")
     print(f"Model:          {model_name}\n")
 
     if not groq_key or groq_key.startswith("YOUR_"):
-        print("❌ Cannot proceed without a valid Groq API Key.")
-        print("👉 Please get a free API key at: https://console.groq.com/keys")
-        print("👉 Add it to a .env file: GROQ_API_KEY=your_key_here\n")
+        print(" Cannot proceed without a valid Groq API Key.")
+        print(" Please get a free API key at: https://console.groq.com/keys")
+        print(" Add it to a .env file: GROQ_API_KEY=your_key_here\n")
         return
 
     # Build agent
-    print("🧠 Initializing Groq AI Agent...")
+    print(" Initializing Groq AI Agent...")
     try:
         agent_executor, tools, llm = build_agent(groq_key, tavily_key, model_name)
     except Exception as e:
-        print(f"❌ Failed to initialize Agent: {e}")
+        print(f" Failed to initialize Agent: {e}")
         return
 
     # Test LLM connection
     try:
         test_response = llm.invoke("Explain what an AI Agent is in one sentence.")
-        print("🤖 LLM Connection Test:", test_response.content.strip())
+        print(" LLM Connection Test:", test_response.content.strip())
     except Exception as e:
-        print(f"❌ LLM Connection Test Failed: {e}")
+        print(f" LLM Connection Test Failed: {e}")
         print("Please verify that your Groq API key is valid and has active quota.")
         return
 
-    print(f"✅ Loaded {len(tools)} tools: {[t.name for t in tools]}")
-    print("✅ AI Agent is ready!\n")
+    print(f" Loaded {len(tools)} tools: {[t.name for t in tools]}")
+    print(" AI Agent is ready!\n")
 
     # Command line argument handling: python copy_of_ai_agent.py --test
     if "--test" in sys.argv:
@@ -368,22 +368,22 @@ def main():
 
     # Interactive session prompt
     print("=" * 60)
-    print("🤖 AI Agent Interactive Chat Session")
+    print(" AI Agent Interactive Chat Session")
     print("Type your question below.")
     print("Type 'run tests' to execute sample tests, or 'exit' / 'quit' to end.")
     print("=" * 60)
 
     while True:
         try:
-            user_input = input("\n👤 You: ").strip()
+            user_input = input("\n You: ").strip()
         except (KeyboardInterrupt, EOFError):
-            print("\n👋 Goodbye!")
+            print("\n Goodbye!")
             break
 
         if not user_input:
             continue
         if user_input.lower() in ["exit", "quit", "q"]:
-            print("\n👋 Goodbye!")
+            print("\n Goodbye!")
             break
         if user_input.lower() in ["run tests", "test", "tests"]:
             run_tests(agent_executor, has_tavily=bool(tavily_key))
