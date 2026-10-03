@@ -1,0 +1,173 @@
+=============================================================================
+PIXELCORE DUAL AI ENGINE: RAG MODEL + AI AGENT
+COMPLETE RUNNING AND EXECUTION GUIDE
+=============================================================================
+
+Is file mein project ko run karne ke saare tareeqe step-by-step diye gaye hain:
+1. Terminal / PowerShell se kaise chalaye
+2. VS Code se kaise chalaye (Terminal, Buttons, Code Runner)
+3. Windows File Explorer / Files se kaise chalaye
+4. Dono Features (RAG Model vs AI Agent) ko kaise use karein
+5. Troubleshooting aur common issues
+
+=============================================================================
+1. TERMINAL / POWERSHELL SE KAISE CHALAYE
+=============================================================================
+
+A. REACT WEB APPLICATION (RECOMMENDED INTERFACE)
+------------------------------------------------
+Yeh main 3D interactive web app hai jisme branch switcher (RAG vs AI Agent)
+dono ek hi web page par uplabdh hain.
+
+Step 1: Apne computer par PowerShell ya Command Prompt (CMD) open karein.
+Step 2: Frontend folder ke path par navigate karein:
+        cd "c:\Users\Codex_boy\Desktop\WAR\AI Agent\RAG MODEL WITH AI AGENT\RAG MODEL\frontend"
+
+Step 3: Dependencies pehle se installed hain, seedha dev server start karein:
+        npm run dev
+
+Step 4: Terminal par jo local URL dikhe (jaise http://localhost:5173),
+        us par Ctrl + Click karein ya browser mein type karke open karein.
+
+Step 5: Server band karne ke liye terminal mein Ctrl + C press karein.
+
+
+B. PYTHON STREAMLIT DASHBOARD
+-----------------------------
+Agar aap Streamlit dashboard run karna chahte hain:
+
+Step 1: Terminal mein RAG MODEL directory mein jayein:
+        cd "c:\Users\Codex_boy\Desktop\WAR\AI Agent\RAG MODEL WITH AI AGENT\RAG MODEL"
+
+Step 2: Streamlit command run karein:
+        streamlit run app.py
+
+Step 3: Browser mein http://localhost:8501 automatically open ho jayega.
+        Sidebar mein branch radio button se 'Feature 1: RAG Model' ya
+        'Feature 2: AI Agent' select karein.
+
+
+C. QUICK CLI TERMINAL TEST
+--------------------------
+Agar aap bina kisi browser ke seedha terminal mein dono features test karna chahte hain:
+
+Step 1: Terminal open karein:
+        cd "c:\Users\Codex_boy\Desktop\WAR\AI Agent\RAG MODEL WITH AI AGENT\RAG MODEL"
+
+Step 2: Python script execute karein:
+        python demo_dual.py
+
+        Yeh script Branch 1 (RAG vector search) aur Branch 2 (AI Agent math
+        aur web search) dono ko command line par test karke result dikhayegi.
+
+
+=============================================================================
+2. VS CODE SE KAISE CHALAYE
+=============================================================================
+
+A. VS CODE INTEGRATED TERMINAL SE:
+----------------------------------
+1. VS Code mein project folder open karein:
+   File -> Open Folder -> 'RAG MODEL WITH AI AGENT' ya 'RAG MODEL' select karein.
+2. Terminal open karne ke liye shortcut dabayein:
+   Ctrl + ` (tilde key, jo Tab ke upar hoti hai)
+   ya top menu se: Terminal -> New Terminal.
+3. React Frontend chalane ke liye terminal mein likhein:
+   cd "RAG MODEL/frontend"
+   npm run dev
+4. Streamlit chalane ke liye split terminal (+) karke likhein:
+   cd "RAG MODEL"
+   streamlit run app.py
+
+
+B. VS CODE RUN / DEBUG BUTTONS SE:
+----------------------------------
+1. Left sidebar mein file explorer se 'demo_dual.py' ya 'app.py' par click karein.
+2. File ke top-right corner par ek 'Play' button (triangle icon) hota hai:
+   - 'Run Python File' par click karte hi script terminal mein execute ho jayegi.
+3. Streamlit ko run karne ke liye:
+   VS Code terminal mein 'streamlit run app.py' likhna sabse reliable tarika hai.
+
+
+C. VS CODE PACKAGE.JSON SCRIPTS SE (NPM SCRIPTS FILTER):
+--------------------------------------------------------
+1. VS Code ke left sidebar (File Explorer) ke bilkul bottom mein 'NPM SCRIPTS' ka
+   ek expandable section hota hai.
+2. Agar wahan 'frontend/package.json' dikhe, to use expand karein:
+   - 'dev' script ke aage 'Run' button par click karein.
+   - Vite development server automatically start ho jayega.
+
+
+=============================================================================
+3. WINDOWS FILE EXPLORER (FILES) SE KAISE CHALAYE
+=============================================================================
+
+Agar aap bar-bar command line path type nahi karna chahte, to File Explorer se
+ye aasan tarike use karein:
+
+TARIKA 1: ADDRESS BAR MEIN 'CMD' YA 'POWERSHELL' LIKHNA
+-------------------------------------------------------
+1. File Explorer mein is folder mein jayein:
+   c:\Users\Codex_boy\Desktop\WAR\AI Agent\RAG MODEL WITH AI AGENT\RAG MODEL\frontend
+2. Folder ke top address bar (jahan folder path likha hota hai) par click karein.
+3. Wahan 'cmd' ya 'powershell' type karein aur Enter dabayein.
+4. Console window usi exact folder mein open hogi.
+5. Ab bas 'npm run dev' likh kar Enter dabayein.
+
+
+TARIKA 2: ONE-CLICK BATCH FILE (DOUBLE CLICK SE CHALANE KE LIYE)
+---------------------------------------------------------------
+Aapki suvidha ke liye RAG MODEL folder mein 2 batch files bana di gayi hain:
+
+1. 'RUN_FRONTEND.bat' - Is par double click karein:
+   Yeh automatically React web page ko terminal open karke start kar dega.
+2. 'RUN_STREAMLIT.bat' - Is par double click karein:
+   Yeh automatically Streamlit dashboard ko launch kar dega.
+
+
+=============================================================================
+4. DONO FEATURES KO KAISE TEST AUR SWITCH KAREIN
+=============================================================================
+
+FEATURE 1: RAG MODEL (DOCUMENT Q&A)
+-----------------------------------
+- Top navigation bar ya hero section mein '1. RAG Model' select karein.
+- Left panel mein '+ Upload' par click karke PDF, text file ya image upload karein.
+- Document parse aur vector index ho jayega.
+- Input box mein document se related question poochhein ya quick prompt try karein:
+  Jaise: "What are the main findings in my document?"
+- Result grounded context ke saath aayega aur source label dikhayega:
+  'From Your Documents (RAG)'.
+- Saath hi 'date +2' ya 'date after 5 days' likh kar real-time date math test karein.
+
+FEATURE 2: AI AGENT (AUTONOMOUS MULTI-TOOL ENGINE)
+--------------------------------------------------
+- Top navigation bar ya hero section mein '2. AI Agent' select karein.
+- Left panel automatically Agent Tools (Wikipedia, Tavily, Math) dikhayega.
+- Input box mein query enter karein:
+  - Wikipedia test: "According to Wikipedia, who was Alan Turing?"
+  - Live Web test: "Search web for latest NASA Artemis news"
+  - Exact Math test: "What is (452 * 78) + 982?"
+  - Multi-Tool reasoning: "Find population of Tokyo & Paris and add them"
+- Response aane par message ke neeche 'Tools Used' button par click karke
+  intermediate observations aur tool trace inspect karein.
+
+
+=============================================================================
+5. API CONFIGURATION AUR TROUBLESHOOTING
+=============================================================================
+
+API KEYS:
+- Working keys are configured in '.env' file:
+  GROQ_API_KEY = your_groq_api_key_here
+  TAVILY_API_KEY = your_tavily_api_key_here
+  GROQ_MODEL = openai/gpt-oss-20b
+- Web UI mein top bar ke 'API Keys Active' button par click karke aap keys
+  view ya change bhi kar sakte hain.
+
+AGAR PORT BUSY HO:
+- Agar port 5173 busy ho, Vite automatically next port (5174) par run karega.
+- Terminal output mein jo URL dikhe wahi browser mein open karein.
+
+=============================================================================
+EOF

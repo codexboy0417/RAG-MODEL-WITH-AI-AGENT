@@ -1,0 +1,60 @@
+# ============================================================
+# RAG MODEL - Requirements
+# ============================================================
+# A Retrieval-Augmented Generation system using:
+#   - Groq API for fast LLM inference
+#   - HuggingFace sentence-transformers for free embeddings
+#   - FAISS for local vector storage
+#   - Streamlit for the web interface
+# ============================================================
+
+# --- Web UI Framework ---
+# Streamlit provides an interactive chat-based frontend
+streamlit
+
+# --- LLM Provider (Groq) ---
+# Groq SDK + LangChain integration for ultra-fast inference
+groq
+langchain-groq
+
+# --- LangChain Core & Community ---
+# Orchestration framework for chaining retrieval and generation
+langchain
+langchain-community
+
+# --- Embeddings (Free, No API Key) ---
+# HuggingFace sentence-transformers for local embedding generation
+langchain-huggingface
+sentence-transformers
+
+# --- Vector Store ---
+# FAISS CPU build for similarity search over document embeddings
+faiss-cpu
+# ChromaDB as an alternative / supplementary vector store
+chromadb
+
+# --- PDF Processing ---
+# PyPDF2  : extract text from standard PDF files
+# pdf2image: convert PDF pages to images (requires poppler)
+PyPDF2
+pdf2image
+
+# --- Image & OCR Processing ---
+# Pillow      : image loading and manipulation
+# pytesseract : OCR to extract text from scanned PDFs / images
+pillow
+pytesseract
+
+# --- Document Parsing (Advanced) ---
+# unstructured: handles diverse document formats (HTML, DOCX, etc.)
+unstructured
+
+# --- Scientific & Math ---
+# numpy         : vector and matrix math
+# scikit-learn  : cosine similarity calculation for source attribution
+numpy
+scikit-learn
+
+# --- Environment / Config ---
+# python-dotenv: load API keys and settings from a .env file
+python-dotenv

@@ -1,0 +1,33 @@
+# Environment variables & secrets
+.env
+*.env
+.env.local
+.env.*.local
+
+# Node dependencies & builds
+node_modules/
+*/node_modules/
+dist/
+*/dist/
+build/
+
+# Python cache & bytecode
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Logs
+*.log
+
+# System & IDE files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
